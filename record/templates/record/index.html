@@ -3,65 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        #record {
-            background-color: red; /* Green */
-            border-width: medium;
-            border-color: black;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            max-width: 50%;
-            max-height: 15%;
-            border-radius: 50%;
-            left: 100px;
-            right: 100px;
-            position: relative;
-        }
-        #stopRecord {
-            background-color: green; /* Green */
-            border-width: medium;
-            border-color: black;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            max-width: 50%;
-            max-height: 15%;
-            border-radius: 50%;
-            left: 100px;
-            right: 100px;
-            position: relative;
-        }
-        h2 {
-            left: 100px;
-            position: relative;
-        }
-        #recordedAudio {
-            left: 100px;
-            right: 100px;
-            position: relative;
-        }
-    </style>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'record/default.css' %}">
 </head>
 <body>
-        <h2>Record</h2>
-        <p>
-            <button id=record></button>
-            <button id=stopRecord disabled>Stop</button>
-        </p>
-        <p>
-            <audio id=recordedAudio></audio>
-        </p>
+    <div class="container">
+        <div class="header">
+            This is header
+        </div>
+        <div class="content">
+            <div class="template-list">
+                This is template-list
+            </div>
+            <div class="main-view">
+                <div class="current-template">
+                    {% load static %}
+                    <img src="{% static 'record/template.jpg' %}" alt="Template Slide">
+                </div>
+                <div class="buttons">
+                    <button id=record>Start</button>
+                    <button id=stopRecord disabled>Stop</button>
+                    <audio id="recordedAudio"></audio>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     navigator.mediaDevices.getUserMedia({audio:true})
