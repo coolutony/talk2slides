@@ -85,6 +85,9 @@ target/
 __pycache__/
 local_settings.py
 
+
+## config file ##
+*.ini
 .env
 db.sqlite3
 .idea/**
