@@ -5,6 +5,31 @@
     <title>Title</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'record/default.css' %}">
+    <style>
+        .main-view{
+            display: flex;
+        }
+        .template-img{
+            width: auto;
+            border: solid black;
+        }
+        .current-template{
+            width: 70%;
+        }
+        .control-panel{
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: space-around;
+            background: aquamarine;
+        }
+        .align-test{
+            display: flex;
+            justify-content: center;
+            background: bisque;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -18,11 +43,11 @@
             <div class="main-view">
                 <div class="current-template">
                     {% load static %}
-                    <img src="{% static 'record/template.jpg' %}" alt="Template Slide">
+                    <img class="template-img" src="{% static 'record/template.jpg' %}" alt="Template Slide">
                 </div>
-                <div class="buttons">
-                    <button id=record>Start</button>
-                    <button id=stopRecord disabled>Stop</button>
+                <div class="control-panel">
+                    <div class="align-test"><button id=record>Start</button></div>
+                    <div class="align-test"><button id=stopRecord disabled>Stop</button></div>
                     <audio id="recordedAudio"></audio>
                 </div>
             </div>
