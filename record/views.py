@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.template import RequestContext
-import base64
-import naver_api_utils as naive
+from record import naver_api_utils as naive
 import configparser
 
 config = configparser.ConfigParser()
