@@ -3,9 +3,10 @@ from django.http import JsonResponse
 from django.template import RequestContext
 from record import naver_api_utils as naive
 import configparser
-
+import os
 config = configparser.ConfigParser()
-config.read('config.ini')
+print(os.getcwd())
+config.read('record/config.ini')
 
 def index(request):
     #return HttpResponse("Hello, world. You're at the polls index.")
@@ -15,8 +16,9 @@ def index(request):
 def receive(request):
     context_instance=RequestContext(request)
     print(request.FILES.get('data'))
-    data = request.FILES.get('data') #This data is blob
+    data = request.FILES.get('data').read() #This data is blob
     text = naive.parse_audio(config['NAVER_AI_API']['client_id'],\
                       config['NAVER_AI_API']['client_secret'],\
                       audio_bytes=data, lang="Kor")
-    return JsonResponse({"msg":text}) #TODO: appropriate response
+    print(text)
+    return JsonResponse({"msg":text})
