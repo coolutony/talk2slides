@@ -1,7 +1,7 @@
 Talk 2 Slides
 ============
 Talk 2 Slides는 사용자의 음성을 인식해 이에 해당되는 프레젠테이션 슬라이드를 제공하는 서비스입니다.
-# 음성을 인식해 텍스트로 변환하는 과정에서 NAVER의 CSR(Clova Speech Recognition) API을 이용하였습니다.
+음성을 인식해 텍스트로 변환하는 과정에서 NAVER의 CSR(Clova Speech Recognition) API을 이용하였습니다.
 
 팀명: 누뗄라
 -----------
