@@ -16,7 +16,7 @@ def index(request, current_template="title_template"):
         "maps_template",
         "list_template",
     ]
-    if current_template == None:
+    if current_template == '':
         current_template = template_filenames[0]
     print(current_template)
     context = {"template_filenames":template_filenames,
