@@ -15,20 +15,38 @@ def str_to_mkd(rcv_lst):
 	        print('---\n', file=f)
 	    print('# Thank You!', file=f)
 
-# example run
-rcv_lst = dict()
+# example run 1
+rcv_lst_1 = dict()
+
+제목 = '제목'
+rcv_lst_1[제목] = ''
+
+단락_1 = '여기에는 단락이 들어갑니다.'
+단락_2 = '여기에도 단락이 들어갑니다.'
+rcv_lst_1['단락'] = [단락_1, 단락_2]
+
+키워드 = ['- 키워드1','- 키워드2','- 키워드3']
+rcv_lst_1['키워드'] = 키워드
+
+이미지='img src="../_assets/placeholder-image.jpg" width="500" '
+rcv_lst_1['이미지'] = '<'+이미지+'/>'
+
+
+# example run 2
+rcv_lst_2 = dict()
 
 제목 = '누뗄라'
-rcv_lst[제목] = ''
+rcv_lst_2[제목] = ''
 
 단락_1 = '이탈리아 알바에 본사를 둔 페레로 社가 만들고 있는 헤이즐넛 스프레드. 100g당 545kcal의 고열량이므로 다이어트를 해야 하는 사람들은 반드시 피해야 할 칼로리 폭탄이다. 금박지로 포장된 동그란 초콜릿인 페레로 로쉐에 들어있는 초콜릿 잼이 바로 누텔라이다.'
 단락_2 = 'Nutella is a brand of sweetened hazelnut cocoa spread. Nutella is manufactured by the Italian company Ferrero and was first introduced in 1964, although its first iteration dates to 1963.'
-rcv_lst['단락'] = [단락_1, 단락_2]
+rcv_lst_2['단락'] = [단락_1, 단락_2]
 
 키워드 = ['- 악마의똥','- 하나님','- 한번만']
-rcv_lst['키워드'] = 키워드
+rcv_lst_2['키워드'] = 키워드
 
 이미지='img src="../_assets/nutella.jpeg" width="500" '
-rcv_lst['이미지'] = '<'+이미지+'/>'
+rcv_lst_2['이미지'] = '<'+이미지+'/>'
 
-str_to_mkd(rcv_lst)
+
+str_to_mkd(rcv_lst_1)
