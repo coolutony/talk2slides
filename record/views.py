@@ -13,13 +13,30 @@ def index(request, current_template="title_template"):
         "title_template",
         "paragraph_template",
         "image_template",
-        "maps_template",
         "list_template",
     ]
+    template_buttons = {
+        "title_template": [
+            "Title"
+        ],
+        "paragraph_template":[
+            "Title",
+            "Content"
+        ],
+        "image_template":[
+            "Content"
+        ],
+        "list_template":[
+            "Title",
+            "Content"
+        ]
+    }
     if current_template == '':
         current_template = template_filenames[0]
     print(current_template)
+    buttons = template_buttons[current_template]
     context = {"template_filenames":template_filenames,
+               "buttons":buttons,
                "current_template":current_template}
     return render(request, 'record/index.html', context)
 

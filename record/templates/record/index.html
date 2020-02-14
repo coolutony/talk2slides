@@ -30,7 +30,7 @@
             width: 60%;
         }
         .template-list-container-img{
-            width: 60%;
+            width: 50%;
             transition: all .2s ease-in-out;
         }
         .template-list-container-img:hover {
@@ -41,16 +41,17 @@
             flex-direction: row;
         }
         .current-template {
-            width:70%;
+            width:60%;
             align-self: center;
         }
         .template-img{
             margin-top: 2%;
             margin-left: 10%;
-            width: auto;
+            width: 100%;
         }
         .control-panel {
-            width:30%;
+            width:25%;
+            margin-left: 5%;
             overflow: hidden;
             display: flex;
         }
@@ -75,9 +76,10 @@
         .control-panel_button-holder_button:hover:enabled{
             background: #faf5e4;
             color:black;
+            cursor: pointer;
         }
 
-        .align-test{
+        .control-panel_button-holder_button-wrapper{
             display: flex;
             height: 50%;
             justify-content: center;
@@ -113,12 +115,20 @@
             </div>
             <div class="control-panel">
                 <div class="control-panel_button-holder">
-                    <div class="align-test">
+                    {% for button in buttons %}
+                    <div class="control-panel_button-holder_button-wrapper">
+                        <button class="control-panel_button-holder_button">{{ button }}</button>
+                    </div>
+                    {% endfor %}
+                    <!--div class="control-panel_button-holder_button-wrapper">
                         <button class="control-panel_button-holder_button" id=record>Start</button>
                     </div>
-                    <div class="align-test">
+                    <div class="control-panel_button-holder_button-wrapper">
+                        <button class="control-panel_button-holder_button" id=record>Start</button>
+                    </div-->
+                    <!--div class="control-panel_button-holder_button-wrapper">
                         <button class="control-panel_button-holder_button" id=stopRecord disabled>Stop</button>
-                    </div>
+                    </div-->
                     <!--audio id="recordedAudio"></audio-->
                 </div>
             </div>
@@ -147,6 +157,7 @@
     function sendData(blob){
         console.log(blob);
         var xhttp = new XMLHttpRequest();
+        //TODO: Hardcoded 'localhost:8000' should change
         xhttp.open("POST", "http://localhost:8000/record/receive", true);
         var data = new FormData();
         data.append('data', blob, 'audio_blob');
@@ -159,22 +170,35 @@
         };
     }
 
-
-    record.onclick = e => {
+    var buttons = document.getElementsByClassName("control-panel_button-holder_button");
+    for (let i=0; i< buttons.length; i++){
+        buttons[i].onclick = e => {
+            console.log(i);
+            if (!buttons[i].classList.contains('button-recording')){
+                buttons[i].classList.add('button-recording');
+                audioChunks = [];
+                rec.start();
+            }else{
+                buttons[i].disabled = false;
+                buttons[i].classList.remove('button-recording');
+                buttons[i].classList.add('button-finished');
+                rec.stop();
+            }
+        }
+    }
+    /*record.onclick = e => {
         console.log('I was clicked')
-        record.disabled = true;
-        stopRecord.disabled=false;
-        record.classList.add('button-recording');
-        audioChunks = [];
-        rec.start();
-    }
-    stopRecord.onclick = e => {
-        console.log("I was clicked")
-        record.disabled = false;
-        stop.disabled=true;
-        record.classList.remove('button-recording');
-        record.classList.add('button-finished');
-        rec.stop();
-    }
+        if (!record.classList.contains('button-recording')){
+            record.classList.add('button-recording');
+            audioChunks = [];
+            rec.start();
+        }else{
+            record.disabled = false;
+            record.classList.remove('button-recording');
+            record.classList.add('button-finished');
+            rec.stop();
+        }
+
+    }*/
 </script>
 </html>
