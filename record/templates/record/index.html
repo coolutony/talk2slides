@@ -157,6 +157,7 @@
     function sendData(blob){
         console.log(blob);
         var xhttp = new XMLHttpRequest();
+        //TODO: Hardcoded 'localhost:8000' should change
         xhttp.open("POST", "http://localhost:8000/record/receive", true);
         var data = new FormData();
         data.append('data', blob, 'audio_blob');
