@@ -71,8 +71,7 @@
             font-size: 20px;
         }
         .control-panel_button-holder_button:hover{
-            background: palevioletred;
-            color: #eeeeff;
+            background: #faf5e4;
         }
 
         .align-test{
@@ -80,6 +79,10 @@
             height: 50%;
             justify-content: center;
             align-items: center;
+        }
+        .button-finished{
+            background: #eeeeee;
+            color: #bbbbbb;
         }
         button {
 
@@ -156,7 +159,6 @@
     record.onclick = e => {
         console.log('I was clicked')
         record.disabled = true;
-        record.style.backgroundColor = "blue"
         stopRecord.disabled=false;
         audioChunks = [];
         rec.start();
@@ -165,7 +167,7 @@
         console.log("I was clicked")
         record.disabled = false;
         stop.disabled=true;
-        record.style.backgroundColor = "red"
+        record.classList.add('button-finished');
         rec.stop();
     }
 </script>
