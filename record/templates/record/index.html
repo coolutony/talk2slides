@@ -30,7 +30,7 @@
             width: 60%;
         }
         .template-list-container-img{
-            width: 60%;
+            width: 50%;
             transition: all .2s ease-in-out;
         }
         .template-list-container-img:hover {
@@ -113,12 +113,17 @@
             </div>
             <div class="control-panel">
                 <div class="control-panel_button-holder">
+                    {% for button in buttons %}
                     <div class="control-panel_button-holder_button-wrapper">
+                        <button class="control-panel_button-holder_button">{{ button }}</button>
+                    </div>
+                    {% endfor %}
+                    <!--div class="control-panel_button-holder_button-wrapper">
                         <button class="control-panel_button-holder_button" id=record>Start</button>
                     </div>
                     <div class="control-panel_button-holder_button-wrapper">
                         <button class="control-panel_button-holder_button" id=record>Start</button>
-                    </div>
+                    </div-->
                     <!--div class="control-panel_button-holder_button-wrapper">
                         <button class="control-panel_button-holder_button" id=stopRecord disabled>Stop</button>
                     </div-->
