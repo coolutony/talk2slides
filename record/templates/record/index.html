@@ -116,9 +116,9 @@
                     <div class="align-test">
                         <button class="control-panel_button-holder_button" id=record>Start</button>
                     </div>
-                    <div class="align-test">
+                    <!--div class="align-test">
                         <button class="control-panel_button-holder_button" id=stopRecord disabled>Stop</button>
-                    </div>
+                    </div-->
                     <!--audio id="recordedAudio"></audio-->
                 </div>
             </div>
@@ -162,19 +162,17 @@
 
     record.onclick = e => {
         console.log('I was clicked')
-        record.disabled = true;
-        stopRecord.disabled=false;
-        record.classList.add('button-recording');
-        audioChunks = [];
-        rec.start();
-    }
-    stopRecord.onclick = e => {
-        console.log("I was clicked")
-        record.disabled = false;
-        stop.disabled=true;
-        record.classList.remove('button-recording');
-        record.classList.add('button-finished');
-        rec.stop();
+        if (!record.classList.contains('button-recording')){
+            record.classList.add('button-recording');
+            audioChunks = [];
+            rec.start();
+        }else{
+            record.disabled = false;
+            record.classList.remove('button-recording');
+            record.classList.add('button-finished');
+            rec.stop();
+        }
+
     }
 </script>
 </html>
