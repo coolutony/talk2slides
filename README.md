@@ -18,6 +18,15 @@ Dependency
 - scipy==1.4.1
 - spacy==2.2.3
 
+사용법
+-
+Dependency를 모두 설치한 뒤, 메인 폴더에 들어가서
+
+`python manage.py migrate`  
+`python manage.py runserver`  
+을 입력하면 `localhost:8000/record/` 에서 본 프로젝트를 확인할 수 있습니다. 
+
+
 절차
 -
 1. 사용자가 발표하려는 내용을 음성으로 녹음합니다.
