@@ -10,6 +10,9 @@ config.read('record/config.ini')
 
 def index(request):
     #return HttpResponse("Hello, world. You're at the polls index.")
+    template_files = [
+        
+    ]
     context = {}
     return render(request, 'record/index.html', context)
 
