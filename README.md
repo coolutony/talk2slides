@@ -1,6 +1,6 @@
 Talk 2 Slides
 -
-Talk 2 Slides는 사용자의
+Talk 2 Slides는 사용자의 음성을 인식해 이에 해당되는 프레젠테이션 슬라이드를 제공하는 서비스입니다.
 
 팀명: 누뗄라
 -
@@ -8,4 +8,4 @@ Talk 2 Slides는 사용자의
 팀원: 김상엽, 김선욱, 박수형, 이용진
 -
 
-Talk 2 Slides는 사용자의
+
