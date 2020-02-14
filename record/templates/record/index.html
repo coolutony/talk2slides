@@ -9,31 +9,39 @@
         .container{
             width: 100%;
         }
-        .main-view{
-            display: flex;
-        }
-        .template-img{
-            width: auto;
-            border: solid black;
-        }
         .template-list{
             width: 100%;
         }
         .template-list-img{
             width: {% widthratio 100 template_filenames|length|add:1 1 %}%;
         }
-        .current-template{
-            border: solid grey;
-        }
-        .control-panel{
-            width: 20%;
+        .main-view {
+            border: solid gray;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-content: space-around;
+            flex-direction: row;
+        }
+        .current-template {
+            width:70%;
+            border: solid black;
+            align-self: center;
+        }
+        .template-img{
+            width: auto;
+        }
+        .control-panel {
+            width:30%;
+            overflow: hidden;
+            display: flex;
             background: aquamarine;
         }
-        .control-panel_button{
+        .control-panel_button-holder{
+            width:100%;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-self: stretch;
+        }
+        .control-panel_button-holder_button{
             height: 50px;
             width: 50px;
         }
@@ -50,30 +58,37 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            This is header
+<div class="container">
+    <div class="header">
+    </div>
+    <div class="content">
+        <div class="template-list">
+            {% for template in template_filenames %}
+            {% load static %}
+            <a href ="{% url 'record:index' template %}">
+                <input type="image" class="template-list-img" src="{% static 'record/'|add:template|add:'.jpg' %}">
+            </a>
+            {% endfor %}
         </div>
-        <div class="content">
-            <div class="template-list">
-                {% for template in template_filenames %}
-                    {% load static %}
-                    <input type="image" class="template-list-img" src="{% static 'record/'|add:template|add:'.jpg' %}">
-                {% endfor %}
+        <div class="main-view">
+            <div class="current-template">
+                {% load static %}
+                <img class="template-img" src="{% static 'record/'|add:current_template|add:'.jpg' %}" alt="Template Slide">
             </div>
-            <div class="main-view">
-                <div class="current-template">
-                    {% load static %}
-                    <img class="template-img" src="{% static 'record/title_template.jpg' %}" alt="Template Slide">
-                </div>
-                <div class="control-panel">
-                    <div class="align-test"><button class="control-panel_button" id=record>Start</button></div>
-                    <div class="align-test"><button class="control-panel_button"  id=stopRecord disabled>Stop</button></div>
+            <div class="control-panel">
+                <div class="control-panel_button-holder">
+                    <div class="align-test">
+                        <button class="control-panel_button-holder_button" id=record>Start</button>
+                    </div>
+                    <div class="align-test">
+                        <button class="control-panel_button-holder_button" id=stopRecord disabled>Stop</button>
+                    </div>
                     <audio id="recordedAudio"></audio>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 <script>
     navigator.mediaDevices.getUserMedia({audio:true})

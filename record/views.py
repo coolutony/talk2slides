@@ -8,7 +8,7 @@ config = configparser.ConfigParser()
 config.read('record/config.ini')
 
 
-def index(request, current_template="title-template"):
+def index(request, current_template="title_template"):
     template_filenames = [
         "title_template",
         "paragraph_template",
@@ -18,7 +18,7 @@ def index(request, current_template="title-template"):
     ]
     if current_template == None:
         current_template = template_filenames[0]
-
+    print(current_template)
     context = {"template_filenames":template_filenames,
                "current_template":current_template}
     return render(request, 'record/index.html', context)
