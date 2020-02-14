@@ -100,3 +100,10 @@ def kkma_tokenize(sent):
     words = [w for w in words if ('/NNP' in w or '/NNG' in w)]
     # words = [w for w in words if ('/NN' in w or '/XR' in w or '/VA' in w or '/VV' in w)]
     return words
+
+def get_keywords_list(ranked, threshold=1.0, exclude=set()):
+    keywords = []
+    for word_info, score in ranked:
+        if score >= threshold and word_info.split('/')[0] not in exclude:
+            keywords.append(word_info.split('/')[0])
+    return keywords
