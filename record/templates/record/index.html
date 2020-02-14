@@ -117,9 +117,12 @@
                 <div class="control-panel_button-holder">
                     {% for button in buttons %}
                     <div class="control-panel_button-holder_button-wrapper">
-                        <button class="control-panel_button-holder_button">{{ button }}</button>
+                        <button class="control-panel_button-holder_button" id="{{ button }}">{{ button }}</button>
                     </div>
                     {% endfor %}
+                    <div class="control-panel_button-holder_button-wrapper">
+                        <button class="control-panel_button-holder_button" id="done_button">Done</button>
+                    </div>
                     <!--div class="control-panel_button-holder_button-wrapper">
                         <button class="control-panel_button-holder_button" id=record>Start</button>
                     </div>
@@ -137,6 +140,8 @@
 </div>
 </body>
 <script>
+    var blobs=[null,null];
+    var current_i=-1;
     navigator.mediaDevices.getUserMedia({audio:true})
         .then(stream => {handlerFunction(stream)})
 
@@ -150,7 +155,10 @@
                 //recordedAudio.src = URL.createObjectURL(blob);
                 //recordedAudio.controls=true;
                 //recordedAudio.autoplay=true;
-                sendData(blob)
+                console.log(current_i);
+                console.log(blob);
+                blobs[current_i]=blob;
+                //sendData(blob)
             }
         }
     }
@@ -160,7 +168,9 @@
         //TODO: Hardcoded 'localhost:8000' should change
         xhttp.open("POST", "http://localhost:8000/record/receive", true);
         var data = new FormData();
-        data.append('data', blob, 'audio_blob');
+        data.append('data1', blobs[0], 'audio_blob1');
+        data.append('data2', blobs[1], 'audio_blob2');
+        data.append('template', '{{ current_template }}');
         data.append('csrfmiddlewaretoken', '{{ csrf_token }}');
         xhttp.send(data);
         xhttp.onreadystatechange = function() {
@@ -174,15 +184,27 @@
     for (let i=0; i< buttons.length; i++){
         buttons[i].onclick = e => {
             console.log(i);
+            current_i = i;
             if (!buttons[i].classList.contains('button-recording')){
                 buttons[i].classList.add('button-recording');
                 audioChunks = [];
+
                 rec.start();
             }else{
                 buttons[i].disabled = false;
                 buttons[i].classList.remove('button-recording');
                 buttons[i].classList.add('button-finished');
                 rec.stop();
+            }
+        }
+    }
+    done_button.onclick = e => {
+        console.log("done");
+        for (let j = 0; j< 2; j++){
+            console.log("beforesent");
+            if (blobs[j]!= null){
+                console.log("sent");
+                sendData(blobs[j]);
             }
         }
     }
