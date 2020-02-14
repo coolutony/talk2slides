@@ -6,6 +6,7 @@ Talk 2 Slides는 사용자의 음성으로부터 이에 대응되는 프레젠�
 - 생성된 텍스트와 이미지를 포함한 markdown 파일로부터 슬라이드를 생성하는 generator로 DarkSlide를 활용하였습니다. 
 
 Dependency
+-
 - [darkslide]: https://https://github.com/ionelmc/python-darkslide "==5.1.0"
 - Django==3.0.3
 - requests==2.22.0
