@@ -6,12 +6,21 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'record/default.css' %}">
     <style>
+        .container{
+            width: 100%;
+        }
         .main-view{
             display: flex;
         }
         .template-img{
             width: auto;
             border: solid black;
+        }
+        .template-list{
+            width: 100%;
+        }
+        .template-list-img{
+            width: {% widthratio 100 template_filenames|length|add:1 1 %}%;
         }
         .current-template{
             border: solid grey;
@@ -24,10 +33,15 @@
             align-content: space-around;
             background: aquamarine;
         }
+        .control-panel_button{
+            height: 50px;
+            width: 50px;
+        }
         .align-test{
             display: flex;
             height: 50%;
             justify-content: center;
+            align-items: center;
             background: bisque;
         }
         button {
@@ -42,16 +56,19 @@
         </div>
         <div class="content">
             <div class="template-list">
-                This is template-list
+                {% for template in template_filenames %}
+                    {% load static %}
+                    <input type="image" class="template-list-img" src="{% static 'record/'|add:template|add:'.jpg' %}">
+                {% endfor %}
             </div>
             <div class="main-view">
                 <div class="current-template">
                     {% load static %}
-                    <img class="template-img" src="{% static 'record/template.jpg' %}" alt="Template Slide">
+                    <img class="template-img" src="{% static 'record/title_template.jpg' %}" alt="Template Slide">
                 </div>
                 <div class="control-panel">
-                    <div class="align-test"><button id=record>Start</button></div>
-                    <div class="align-test"><button id=stopRecord disabled>Stop</button></div>
+                    <div class="align-test"><button class="control-panel_button" id=record>Start</button></div>
+                    <div class="align-test"><button class="control-panel_button"  id=stopRecord disabled>Stop</button></div>
                     <audio id="recordedAudio"></audio>
                 </div>
             </div>

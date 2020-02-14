@@ -5,15 +5,22 @@ from record import naver_api_utils as naive
 import configparser
 import os
 config = configparser.ConfigParser()
-print(os.getcwd())
 config.read('record/config.ini')
 
-def index(request):
-    #return HttpResponse("Hello, world. You're at the polls index.")
-    template_files = [
-        
+
+def index(request, current_template="title-template"):
+    template_filenames = [
+        "title_template",
+        "paragraph_template",
+        "image_template",
+        "maps_template",
+        "list_template",
     ]
-    context = {}
+    if current_template == None:
+        current_template = template_filenames[0]
+
+    context = {"template_filenames":template_filenames,
+               "current_template":current_template}
     return render(request, 'record/index.html', context)
 
 def receive(request):
