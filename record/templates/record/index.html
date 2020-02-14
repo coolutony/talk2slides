@@ -115,7 +115,7 @@
                     <div class="align-test">
                         <button class="control-panel_button-holder_button" id=stopRecord disabled>Stop</button>
                     </div>
-                    <audio id="recordedAudio"></audio>
+                    <!--audio id="recordedAudio"></audio-->
                 </div>
             </div>
         </div>
@@ -133,9 +133,9 @@
             audioChunks.push(e.data);
             if (rec.state == "inactive"){
                 let blob = new Blob(audioChunks,{type:'audio/mpeg-3'});
-                recordedAudio.src = URL.createObjectURL(blob);
-                recordedAudio.controls=true;
-                recordedAudio.autoplay=true;
+                //recordedAudio.src = URL.createObjectURL(blob);
+                //recordedAudio.controls=true;
+                //recordedAudio.autoplay=true;
                 sendData(blob)
             }
         }
