@@ -116,6 +116,9 @@
                     <div class="align-test">
                         <button class="control-panel_button-holder_button" id=record>Start</button>
                     </div>
+                    <div class="align-test">
+                        <button class="control-panel_button-holder_button" id=record>Start</button>
+                    </div>
                     <!--div class="align-test">
                         <button class="control-panel_button-holder_button" id=stopRecord disabled>Stop</button>
                     </div-->
@@ -159,8 +162,23 @@
         };
     }
 
-
-    record.onclick = e => {
+    var buttons = document.getElementsByClassName("control-panel_button-holder_button");
+    for (let i=0; i< buttons.length; i++){
+        buttons[i].onclick = e => {
+            console.log(i);
+            if (!buttons[i].classList.contains('button-recording')){
+                buttons[i].classList.add('button-recording');
+                audioChunks = [];
+                rec.start();
+            }else{
+                buttons[i].disabled = false;
+                buttons[i].classList.remove('button-recording');
+                buttons[i].classList.add('button-finished');
+                rec.stop();
+            }
+        }
+    }
+    /*record.onclick = e => {
         console.log('I was clicked')
         if (!record.classList.contains('button-recording')){
             record.classList.add('button-recording');
@@ -173,6 +191,6 @@
             rec.stop();
         }
 
-    }
+    }*/
 </script>
 </html>
