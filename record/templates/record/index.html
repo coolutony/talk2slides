@@ -70,8 +70,11 @@
             transition: background-color 0.15s ease-in-out;
             font-size: 20px;
         }
-        .control-panel_button-holder_button:hover{
+        .control-panel_button-holder_button:disabled{
+        }
+        .control-panel_button-holder_button:hover:enabled{
             background: #faf5e4;
+            color:black;
         }
 
         .align-test{
@@ -80,12 +83,13 @@
             justify-content: center;
             align-items: center;
         }
+        .button-recording{
+            background: #339c33;
+            color: white;
+        }
         .button-finished{
             background: #eeeeee;
             color: #bbbbbb;
-        }
-        button {
-
         }
     </style>
 </head>
@@ -160,6 +164,7 @@
         console.log('I was clicked')
         record.disabled = true;
         stopRecord.disabled=false;
+        record.classList.add('button-recording');
         audioChunks = [];
         rec.start();
     }
@@ -167,6 +172,7 @@
         console.log("I was clicked")
         record.disabled = false;
         stop.disabled=true;
+        record.classList.remove('button-recording');
         record.classList.add('button-finished');
         rec.stop();
     }
