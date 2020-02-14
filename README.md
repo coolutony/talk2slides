@@ -1,5 +1,6 @@
 Talk 2 Slides
 -
+-Talk 2 Slides는 사용자의
 
 팀명: 누뗄라
 -
